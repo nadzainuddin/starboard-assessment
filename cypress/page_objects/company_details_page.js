@@ -175,26 +175,26 @@ class CompanyDetailsPage {
     }
 
     natureOfBusinessIsRequiredErrDisplayed() {
-        this.natureOfBusinessTxtAreaErrMsg.should('have.text', 'Nature of business field is required')
         this.natureOfBusinessTxtArea.invoke('val').then((input) => {
-            if (input.length < 1) this.errCardContainer
-                .contains('Nature of business field is required').should("be.visible")
+            if (input.length < 1) 
+                this.errCardContainer.contains('Nature of business field is required').should("be.visible")
+                this.natureOfBusinessTxtAreaErrMsg.should('have.text', 'Nature of business field is required')
         })
     }
 
     businessActivity1IsRequiredErrDisplayed() {
-        this.businessActivity1ErrMsg.should('have.text', 'At least one business activity field is required')
         this.businessActivity1Input.invoke('val').then((input) => {
-            if (input.length < 1) this.errCardContainer
-                .contains('At least one business activity field is required').should("be.visible")
+            if (input.length < 1) 
+                this.errCardContainer.contains('At least one business activity field is required').should("be.visible")
+                this.businessActivity1ErrMsg.should('have.text', 'At least one business activity field is required')
         })
     }
 
     sourceOfFundingIsRequiredErrDisplayed() {
-        this.sourceOfFundingDDErrMsg.should('have.text', 'The source of fund field is required')
         this.sourceOfFundingDD.invoke('prop', 'value').then((val) => {
-            if(val.length < 1) this.errCardContainer
-                .contains('The source of fund field is required').should("be.visible")
+            if (val.length < 1) 
+                this.errCardContainer.contains('The source of fund field is required').should("be.visible")
+                this.sourceOfFundingDDErrMsg.should('have.text', 'The source of fund field is required')
         })
     }
 
