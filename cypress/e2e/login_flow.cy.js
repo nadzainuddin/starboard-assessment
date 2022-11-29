@@ -7,7 +7,7 @@ describe('Verify company registration via login flow', () => {
         cy.visit(Cypress.config().baseUrl);
     });
 
-    it('Able to register new incorporation', () => {
+    it('Able to register new incorporation - Scenario 01', () => {
         CompanyDueDiligencePage.login("nadterbang@gmail.com", "VlvVHhaMN0")
         CompanyDueDiligencePage.successfullyLoginNotiMsgDisplayed()
         CompanyDueDiligencePage.selectService("New incorporation")
@@ -16,7 +16,7 @@ describe('Verify company registration via login flow', () => {
         CompanyNamePage.validationMsgDisplayed()
     });
 
-    it('Able to register new incorporation', () => {
+    it('Able to register new incorporation - Scenario 02', () => {
         CompanyDueDiligencePage.login("nadterbang@gmail.com", "VlvVHhaMN0")
         CompanyDueDiligencePage.successfullyLoginNotiMsgDisplayed()
         CompanyDueDiligencePage.selectService("New incorporation")
@@ -33,21 +33,75 @@ describe('Verify company registration via login flow', () => {
         CompanyDetailsPage.clickContinueBtn()
     }); 
 
-    it('Unable to proceed transfer-in with invalid UEN number', () => {
+    it('Able to register new incorporation - Scenario 03', () => {
+        CompanyDueDiligencePage.login("nadterbang@gmail.com", "VlvVHhaMN0")
+        CompanyDueDiligencePage.successfullyLoginNotiMsgDisplayed()
+        CompanyDueDiligencePage.selectService("New incorporation")
 
+        CompanyNamePage.enterCompanyName("Company01", "Company02", "Company03")
+        
+        CompanyDetailsPage.enterBusinessDetails("Nature of business", "FITNESS CENTRES AND GYMNASIUMS", "")
+        CompanyDetailsPage.enterFundingDetails("Equity/Shareholder/Investors")
+        CompanyDetailsPage.enterTransactionsDetails("56000", "May", "Singapore")
+        CompanyDetailsPage.selectRequireRegisteredAddressOption("Yes")
+        CompanyDetailsPage.selectRequireCompanySecretaryOption("Yes")
+        CompanyDetailsPage.selectRequireResidentDirectorOption("Yes")
+        CompanyDetailsPage.clickContinueBtn()
+
+        ServiceRequiredPage.clickCompanySecretaryCbox()
+        ServiceRequiredPage.clickContinueBtn()
+
+        ApplicationSummaryPage.clickShareCapitalAddBtn()
+        ShareCapitalPage.enterShareCapitalInformation("", "AUD", "560000", "10")
+
+        ApplicationSummaryPage.clickShareholdersAddBtn()
+        AddShareholdersPage.addIndividualShareholder("100000000", "10000000000")
+        AddShareholdersPage.selectShareholderIsAddedStakeholder("Yes")
+        AddShareholdersPage.selectAddAsShareholderValue(1)
+        AddShareholdersPage.clickOverviewBtn()
+
+        ApplicationSummaryPage.clickUBOAddBtn()
+        UltimateBeneficiaryOwnerPage.selectUBOIsAddedStakeholder("No")
+        UltimateBeneficiaryOwnerPage.requestUBOToFillTheForm("UBO01", "uob01@mail.co")
+
+        ApplicationSummaryPage.clickSubmitAllDetailsBtn()
+        SubmissionStatusPage.detailsSubmissionSuccess()
+        cy.updateUserCreds()
     }); 
 
-    it('Unable to proceed transfer-in with non-existing UEN number', () => {
+    it('Able to register new incorporation - Scenario 04', () => {
+        CompanyDueDiligencePage.login("nadterbang@gmail.com", "VlvVHhaMN0")
+        CompanyDueDiligencePage.successfullyLoginNotiMsgDisplayed()
+        CompanyDueDiligencePage.selectService("New incorporation")
 
+        CompanyNamePage.enterCompanyName("Company01", "Company02", "Company03")
+        
+        CompanyDetailsPage.enterBusinessDetails("Nature of business", "FITNESS CENTRES AND GYMNASIUMS", "")
+        CompanyDetailsPage.enterFundingDetails("Equity/Shareholder/Investors")
+        CompanyDetailsPage.enterTransactionsDetails("56000", "May", "Singapore")
+        CompanyDetailsPage.selectRequireRegisteredAddressOption("Yes")
+        CompanyDetailsPage.selectRequireCompanySecretaryOption("Yes")
+        CompanyDetailsPage.selectRequireResidentDirectorOption("Yes")
+        CompanyDetailsPage.clickContinueBtn()
+
+        ServiceRequiredPage.clickCompanySecretaryCbox()
+        ServiceRequiredPage.clickContinueBtn()
+
+        ApplicationSummaryPage.clickShareCapitalAddBtn()
+        ShareCapitalPage.enterShareCapitalInformation("", "AUD", "560000", "10")
+
+        ApplicationSummaryPage.clickShareholdersAddBtn()
+        AddShareholdersPage.addIndividualShareholder("100000000", "10000000000")
+        AddShareholdersPage.selectShareholderIsAddedStakeholder("Yes")
+        AddShareholdersPage.selectAddAsShareholderValue(1)
+        AddShareholdersPage.clickOverviewBtn()
+
+        ApplicationSummaryPage.clickUBOAddBtn()
+        UltimateBeneficiaryOwnerPage.selectUBOIsAddedStakeholder("No")
+        UltimateBeneficiaryOwnerPage.requestUBOToFillTheForm("UBO01", "uob01@mail.co")
+
+        ApplicationSummaryPage.clickSubmitAllDetailsBtn()
+        SubmissionStatusPage.detailsSubmissionSuccess()
+        cy.updateUserCreds()
     }); 
-
-    it('', () => {
-
-    }); 
-
-    it('', () => {
-
-    }); 
-
-
 });
