@@ -1,15 +1,148 @@
 class UltimateBeneficiaryOwnerPage {
 
-
-
-    
-    
-    //
-    get UBOIsPEPYesOpt() {
+    // page 1
+    get isAddedStakeholderYesOpt() {
 
     }
 
-    get UBOIsPEPNoOpt() {
+    get UBOStakeholderDD() {
+
+    }
+
+    get ultimateBeneficialOwnershipInput() {
+
+    }
+
+    get estimatedNetWealthInput() {
+
+    }
+
+    get sourceOfWealthDD() {
+
+    }
+
+    get sourceOfFundsDD() {
+
+    }
+    //
+
+    //
+    get isAddedStakeholderNoOpt() {
+
+    }
+
+    get yesSendRequestViaEmailOpt() {
+
+    }
+
+    get UBOFullNameInput() {
+
+    }
+
+    get UBOEmailInput() {
+
+    }
+    //
+
+    //
+    get iWillFillThisFormOpt() {
+
+    }
+
+    get titleDD() {
+
+    }
+
+    get fullNameInput() {
+
+    }
+
+    get aliasInput() {
+
+    }
+
+    get preferredNameInput() {
+
+    }
+
+    get firstNameInput() {
+
+    }
+
+    get lastNameInput() {
+
+    }
+
+    get nationalityDD() {
+
+    }
+
+    get dateOfBirthInput() {
+
+    }
+
+    get emailInput() {
+
+    }
+
+    get contactInput() {
+
+    }
+
+    get countryOfTaxResidenceDD() {
+
+    }
+
+    get occupationInput() {
+
+    }
+
+    // get ultimateBeneficialOwnershipInput() {
+
+    // }
+
+    // get estimatedNetWealthInput() {
+
+    // }
+
+    // get sourceOfWealthDD() {
+
+    // }
+
+    // get sourceOfFundsDD() {
+
+    // }
+
+    get residenceAddressLine1Input() {
+
+    }
+
+    get residenceAddressLine2Input() {
+
+    }
+
+    get residenceAddressCityInput() {
+
+    }
+
+    get residenceAddressPostalCodeInput() {
+
+    }
+
+    get residenceAddressStateInput() {
+
+    }
+
+    get residenceAddressCountryDD() {
+
+    }
+
+    get continueBtn() {
+
+    } 
+
+    //
+    get UBOIsPEPYesOpt() {
 
     }
 
@@ -39,6 +172,12 @@ class UltimateBeneficiaryOwnerPage {
     }
     // END
 
+    //
+    get UBOIsPEPNoOpt() {
+
+    }
+    //
+
     // START - Upload supporting docs
     get documentTypeDD() {
 
@@ -52,9 +191,10 @@ class UltimateBeneficiaryOwnerPage {
 
     }
 
-    get dropFileSection() {
+    get dropFileBtn() {
 
     }
+    //
 
     get completeAddingUltimateBeneficiaryOwnerBtn() {
 
