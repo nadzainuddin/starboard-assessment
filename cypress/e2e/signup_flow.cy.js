@@ -14,11 +14,7 @@ describe('Verify company registration via sign up flow', () => {
     });
 
     it('Able to register new incorporation - Scenario 01', () => {
-        cy.fixture('credentials').then((userdata) => {
-            let email = userdata.username + userdata.id + "@mail.co"
-            CompanyDueDiligencePage.signUpBusiness(email, "Lisa Mawar", "12344222")
-        })
-
+        cy.signUpWithEmail()
         CompanyDueDiligencePage.successfullyRegisteredNotiMsgDisplayed()
         CompanyDueDiligencePage.selectService("New incorporation")
 
@@ -50,12 +46,7 @@ describe('Verify company registration via sign up flow', () => {
 
         ApplicationSummaryPage.clickSubmitAllDetailsBtn()
         SubmissionStatusPage.detailsSubmissionSuccess()
-
-        cy.fixture('credentials').then((userdata) => {
-            userdata.id = userdata.id + 1
-            userdata.username = userdata.username
-            cy.writeFile("cypress/fixtures/credentials.json", JSON.stringify(userdata))
-        })
+        cy.updateUserCreds()
     });
 
     it('Able to register new incorporation - Scenario 02', () => {
