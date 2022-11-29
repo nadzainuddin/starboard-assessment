@@ -4,7 +4,7 @@ class ShareCapitalPage {
     }
 
     get currencyDD() {
-        return cy.contains('label', 'Currency').next('div input')
+        return cy.get('[name="currency"] input')
     }
 
     get totalShareCapitalInput() {
@@ -21,7 +21,7 @@ class ShareCapitalPage {
 
     enterShareCapitalInformation(shareType, currency, totalShareCapital, totalNumberOfShares) {
         if (shareType.length > 0) this.shareTypeDD.select(shareType)
-        if (currency.length > 0) this.currencyDD.select(currency)
+        if (currency.length > 0) this.currencyDD.click().type(currency+'{enter}')
         if (totalShareCapital.length > 0) this.totalShareCapitalInput.type(totalShareCapital)
         if (totalNumberOfShares.length > 0) this.totalNumberOfSharesInput.type(totalNumberOfShares)
         this.submitBtn.click()

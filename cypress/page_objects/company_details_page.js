@@ -1,3 +1,5 @@
+require("cypress-plugin-tab");
+
 class CompanyDetailsPage {
     get natureOfBusinessTxtArea() {
         return cy.contains('label', 'Nature of business')
@@ -9,7 +11,7 @@ class CompanyDetailsPage {
         .next('[class*="invalid-feedback"]')
     }
 
-    get businessActivity1Input() {
+    get businessActivity1DD() {
         return cy.contains('label', 'Business activity 1')
             .next('div').find('input')
     }
@@ -19,7 +21,7 @@ class CompanyDetailsPage {
         .next('[class*="invalid-feedback"]')
     }
 
-    get businessActivity2Input() {
+    get businessActivity2DD() {
         return cy.contains('label', 'Business activity 2')
             .next('div').find('input')
     }
@@ -119,7 +121,7 @@ class CompanyDetailsPage {
     }
 
     get requireCompanySecretaryYesOpt() {
-        return cy.get('[for="isSecretarialService"]')
+        return cy.get('#isSecretarialService')
     }
 
     get requireCompanySecretaryNoOpt() {
@@ -183,7 +185,7 @@ class CompanyDetailsPage {
     }
 
     businessActivity1IsRequiredErrDisplayed() {
-        this.businessActivity1Input.invoke('val').then((input) => {
+        this.businessActivity1DD.invoke('val').then((input) => {
             if (input.length < 1) 
                 this.errCardContainer.contains('At least one business activity field is required').should("be.visible")
                 this.businessActivity1ErrMsg.should('have.text', 'At least one business activity field is required')
@@ -264,8 +266,10 @@ class CompanyDetailsPage {
 
     enterBusinessDetails(natureOfBusiness, businessActivity1, businessActivity2) {
         if (natureOfBusiness.length > 0) this.natureOfBusinessTxtArea.type(natureOfBusiness)
-        if (businessActivity1.length > 0) this.businessActivity1Input.type(businessActivity1)
-        if (businessActivity2.length > 0) this.businessActivity2Input.type(businessActivity2)
+        if (businessActivity1.length > 0) 
+            this.businessActivity1DD.click().type(businessActivity1)
+            this.businessActivity1DD.parent('div').next('div').contains('span', businessActivity1).click()
+        if (businessActivity2.length > 0) this.businessActivity2DD.click().type(businessActivity2+'{tab}'+'{enter}')
     }
 
     enterFundingDetails(sourceOfFund) {
@@ -278,7 +282,6 @@ class CompanyDetailsPage {
         if (FYE.length > 0) this.proposedFYEMonthDD.select(FYE)
         if (countryWithMostTransaction.length > 0) 
             this.countryWithMostTransactionDD.click().type(countryWithMostTransaction+'{enter}')
-            //this.countryWithMostTransactionDDOpt.contains('li', countryWithMostTransaction).click()
     }
 
     selectRequireRegisteredAddressOption(option) {
@@ -296,7 +299,8 @@ class CompanyDetailsPage {
     }
 
     selectRequireCompanySecretaryOption(option) {
-        option === 'Yes' ? this.requireCompanySecretaryYesOpt : this.requireCompanySecretaryNoOpt
+        option === 'Yes' ? this.requireCompanySecretaryYesOpt.click() 
+                            : this.requireCompanySecretaryNoOpt.click()
     }
 
     enterCompanySecretaryInformation(fullName, emailAdress, contact, residencyStatus) {

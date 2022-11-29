@@ -1,3 +1,5 @@
+const ShareCapitalPage = require('./share_capital_page')
+
 class ApplicationSummaryPage {
 
     get expandCompanyNameIcon() {
@@ -69,7 +71,7 @@ class ApplicationSummaryPage {
     }
 
     get shareCapitalAddBtn() {
-
+        return cy.contains('h3', 'Share capital').next('div').contains('a', 'Add')
     }
 
     get expandShareCapitalIcon() {
@@ -120,7 +122,7 @@ class ApplicationSummaryPage {
     }
 
     get shareholdersAddBtn() {
-
+        return cy.contains('h3', 'Shareholders').parent('div').next('div').contains('a', 'Add')
     }
 
     get expandShareholdersIcon() {
@@ -154,6 +156,10 @@ class ApplicationSummaryPage {
     get shareholderStatusLbl() {
         // '//h3[contains(text(),'Shareholders')]/../../following-sibling::div//tbody/tr/td[4]/span[contains(@class,'status')]'
         return cy.contains('h3', 'Shareholders').parent('div div').next('div tbody > tr > td:nth-child(4)').children('class', 'status')
+    }
+
+    get UBOAddBtn() {
+        return cy.contains('h3', 'Ultimate Beneficiary Owner (UBO)').parent('div').next('div').contains('a', 'Add')
     }
 
     get expandUBOIcon() {
@@ -193,6 +199,22 @@ class ApplicationSummaryPage {
 
     get submitAllDetailsBtn() {
        return cy.contains('button', 'Submit all details') 
+    }
+
+    clickShareCapitalAddBtn() {
+        this.shareCapitalAddBtn.click()
+    }
+
+    clickShareholdersAddBtn() {
+        this.shareholdersAddBtn.click()
+    }
+
+    clickUBOAddBtn() {
+        this.UBOAddBtn.click()
+    }
+    
+    clickSubmitAllDetailsBtn() {
+        this.submitAllDetailsBtn.click()
     }
 }
 module.exports = new ApplicationSummaryPage()

@@ -2,7 +2,7 @@ class UltimateBeneficiaryOwnerPage {
 
     // page 1
     get isAddedStakeholderYesOpt() {
-
+        return cy.get('#NotNew')
     }
 
     get UBOStakeholderDD() {
@@ -28,25 +28,25 @@ class UltimateBeneficiaryOwnerPage {
 
     //
     get isAddedStakeholderNoOpt() {
-
+        return cy.get('#isNew')
     }
 
     get yesSendRequestViaEmailOpt() {
-
+        return cy.get('#emailUbo')
     }
 
     get UBOFullNameInput() {
-
+        return cy.get('[name="ubo_name"]')
     }
 
     get UBOEmailInput() {
-
+        return cy.get('[name="ubo_email"]')
     }
     //
 
     //
     get iWillFillThisFormOpt() {
-
+        return cy.get('#fillInDirector')
     }
 
     get titleDD() {
@@ -197,7 +197,7 @@ class UltimateBeneficiaryOwnerPage {
     //
 
     get completeAddingUltimateBeneficiaryOwnerBtn() {
-
+        return cy.contains('button', 'Complete adding Ultimate Beneficiary Owner')
     }
     // END
 
@@ -220,6 +220,18 @@ class UltimateBeneficiaryOwnerPage {
 
     selectUBOWealthAndFundsSource(wealth, funds) {
 
+    }
+
+    selectUBOIsAddedStakeholder(option) {
+        option === 'Yes' ? this.isAddedStakeholderYesOpt.click()
+                            : this.isAddedStakeholderNoOpt.click()
+    }
+
+    requestUBOToFillTheForm(fullName, email) {
+        this.yesSendRequestViaEmailOpt.click()
+        this.UBOFullNameInput.type(fullName)
+        this.UBOEmailInput.type(email)
+        this.completeAddingUltimateBeneficiaryOwnerBtn.click()
     }
 
     clickContinueBtn() {

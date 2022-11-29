@@ -103,6 +103,10 @@ class AddShareholdersPage {
         return cy.contains('button', 'Back')
     }
 
+    get overviewBtn() {
+        return cy.contains('div', 'Overview')
+    }
+
     selectShareholderType(option) {
         option === 'Individual' ? this.shareholderTypeIndividualOpt.click()
                             : this.shareholderTypeCorporateOpt.click()
@@ -111,13 +115,6 @@ class AddShareholdersPage {
     selectShareholderIsAddedStakeholder(option) {
         option === 'Yes' ? this.isAddedStakeholderYesOpt.click()
                             : this.isAddedStakeholderNoOpt.click()
-    }
-
-    enterGeneralShareholderInformation(type, sharesAlotted, amountToBePaid) {
-        this.selectShareholderType(type)
-        this.sharesAlottedInput.type(sharesAlotted)
-        this.amountToBePaidInput.type(amountToBePaid)
-        this.continueBtn.click()
     }
 
     // Individual shareholder fx
@@ -176,6 +173,22 @@ class AddShareholdersPage {
                 this.cardContainerErrMsg.contains('The local registration field is required when foreign registration is not present.').should("be.visible")
                 this.localRegNumberErrMsg.should('have.text', 'The local registration field is required when foreign registration is not present.')
         })
+    }
+
+    addIndividualShareholder(sharesAllotted, amtToBePaid) {
+        this.shareholderTypeIndividualOpt.click()
+        this.sharesAlottedInput.type(sharesAllotted)
+        this.amountToBePaidInput.type(amtToBePaid)
+        this.continueBtn.click()
+    }
+
+    selectAddAsShareholderValue(index) {
+        this.addAsShareholderDD.select(index)
+        this.completeAddingShareholderBtn.click()
+    }
+
+    clickOverviewBtn() {
+        this.overviewBtn.click()
     }
 
     validationMsgDisplayed() { 
