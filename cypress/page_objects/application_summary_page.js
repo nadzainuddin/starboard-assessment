@@ -98,6 +98,10 @@ class ApplicationSummaryPage {
         return cy.contains('small', 'TOTAL NUMBER OF SHARES').next('div')
     }
 
+    get directorsAddBtn() {
+        return cy.contains('h3', 'Directors').parent('div').next('div').contains('a', 'Add')
+    }
+
     get expandDirectorsIcon() {
         return cy.contains('h3', 'Directors').parent('div').next('div > i')
     }
@@ -185,6 +189,10 @@ class ApplicationSummaryPage {
         return cy.contains('h3', 'Ultimate Beneficiary Owner (UBO)').parent('div div').next('div tbody > tr > td:nth-child(3)')
     }
 
+    get addAUltimateBeneficiaryOwner() {
+        return cy.contains('a', 'Add a ultimate beneficiary owner')
+    }
+
     get expandServicesIcon() {
         return cy.contains('h3', 'Services').next('div > i')
     }
@@ -205,12 +213,26 @@ class ApplicationSummaryPage {
         this.shareCapitalAddBtn.click()
     }
 
+    clickDirectorsAddBtn() {
+        this.directorsAddBtn.click()
+    }
+
     clickShareholdersAddBtn() {
         this.shareholdersAddBtn.click()
     }
 
+    clickToAddAdditionalShareholder() {
+        this.expandShareholdersIcon.click()
+        this.addAShareholderBtn.click()
+    }
+
     clickUBOAddBtn() {
         this.UBOAddBtn.click()
+    }
+
+    clickToAddAdditionalUBO() {
+        this.expandUBOIcon.click()
+        this.addAUltimateBeneficiaryOwner.click()
     }
     
     clickSubmitAllDetailsBtn() {

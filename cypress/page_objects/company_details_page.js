@@ -218,7 +218,7 @@ class CompanyDetailsPage {
     countryWithMostTransactionIsRequiredErrDisplayed() {
         this.countryWithMostTransactionDD.invoke('prop', 'value').then((val) => {
             if(val.length < 1) this.errCardContainer
-                .contains('The fye month field is required').should("be.visible")
+                .contains('Country that the entity transacts most with field is required').should("be.visible")
         })
     }
 
@@ -269,7 +269,9 @@ class CompanyDetailsPage {
         if (businessActivity1.length > 0) 
             this.businessActivity1DD.click().type(businessActivity1)
             this.businessActivity1DD.parent('div').next('div').contains('span', businessActivity1).click()
-        if (businessActivity2.length > 0) this.businessActivity2DD.click().type(businessActivity2+'{tab}'+'{enter}')
+        if (businessActivity2.length > 0) 
+            this.businessActivity2DD.click().type(businessActivity2)
+            this.businessActivity2DD.parent('div').next('div').contains('span', businessActivity2).click()
     }
 
     enterFundingDetails(sourceOfFund) {
@@ -295,7 +297,7 @@ class CompanyDetailsPage {
         if (city.length > 0) this.registeredAddressCityInput.type(city)
         if (postalCode.length > 0) this.registeredAddressPostalCodeInput.type(postalCode)
         if (state.length > 0) this.registeredAddressStateInput.type(state)
-        if (country.length > 0) this.registeredAddressCountryDD.type(country)
+        if (country.length > 0) this.registeredAddressCountryDD.click().type(country+'{enter}')
     }
 
     selectRequireCompanySecretaryOption(option) {

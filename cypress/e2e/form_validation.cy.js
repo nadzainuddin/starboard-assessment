@@ -1,5 +1,6 @@
 const CompanyDueDiligencePage = require('../page_objects/company_due_diligence_page')
 const CompanyNamePage = require('../page_objects/company_name_page')
+const CompanyDetailsPage = require('../page_objects/company_details_page')
 
 describe('Verify form validation error', () => {
     beforeEach(() => {

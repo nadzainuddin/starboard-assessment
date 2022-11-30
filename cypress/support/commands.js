@@ -25,16 +25,28 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 const CompanyDueDiligencePage = require('../page_objects/company_due_diligence_page')
 
-Cypress.Commands.add('signUpWithEmail', (email, password) => { 
-    cy.fixture('credentials').then((userdata) => {
-        let email = userdata.username + userdata.id + "@mail.co"
+Cypress.Commands.add('signUpWithEmail', () => { 
+    cy.readFile("cypress/fixtures/credentials.json", (err, data) => {
+        if (err) {
+            return console.error(err);
+        };
+    }).then((data) => {
+        let email = data.username + data.id + "@mail.co"
         CompanyDueDiligencePage.signUpBusiness(email, "Lisa Mawar", "12344222")
+        
+        data.id += 1
+        data.username = data.username
+        cy.writeFile("cypress/fixtures/credentials.json", JSON.stringify(data))
     })
+    // cy.fixture('credentials').then((userdata) => {
+    //     let email = userdata.username + userdata.id + "@mail.co"
+    //     CompanyDueDiligencePage.signUpBusiness(email, "Lisa Mawar", "12344222")
+    // })
 })
 
-Cypress.Commands.add('updateUserCreds', (email, password) => { 
+Cypress.Commands.add('updateUserCreds', () => { 
     cy.fixture('credentials').then((userdata) => {
-        userdata.id = userdata.id + 1
+        userdata.id += 1
         userdata.username = userdata.username
         cy.writeFile("cypress/fixtures/credentials.json", JSON.stringify(userdata))
     })

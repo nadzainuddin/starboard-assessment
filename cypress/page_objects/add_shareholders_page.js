@@ -182,6 +182,23 @@ class AddShareholdersPage {
         this.continueBtn.click()
     }
 
+    addCorporateShareholder(sharesAllotted, amtToBePaid) {
+        this.shareholderTypeCorporateOpt.click()
+        this.sharesAlottedInput.type(sharesAllotted)
+        this.amountToBePaidInput.type(amtToBePaid)
+        this.continueBtn.click()
+    }
+
+    requestShareholderFillTheForm(corpRepFullName, corpRepEmail, corpRepContact, compName, countryOfIncorp, localRegNo, foreignRegNo) {
+        if (corpRepFullName.length > 0)  this.corporateRepsFullNameInput.type(corpRepFullName)
+        if (corpRepEmail.length > 0)  this.corporateRepsEmailInput.type(corpRepEmail)
+        if (corpRepContact.length > 0)  this.corporateRepsContactInput.type(corpRepContact)
+        if (compName.length > 0)  this.corporateCompanyNameInput.type(compName)
+        if (countryOfIncorp.length > 0)  this.countryOfIncorporationDD.click().type(countryOfIncorp+'{enter}')
+        if (localRegNo.length > 0)  this.localRegNumberInput.type(localRegNo)
+        if (foreignRegNo.length > 0)  this.foreignRegNumberInput.type(foreignRegNo)
+    }
+
     selectAddAsShareholderValue(index) {
         this.addAsShareholderDD.select(index)
         this.completeAddingShareholderBtn.click()

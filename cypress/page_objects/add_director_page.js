@@ -1,5 +1,3 @@
-const { secretaryEmailAddressErrMsg } = require("./company_details_page")
-const { thirdChoiceNameInput } = require("./company_name_page")
 
 class AddDirectorPage {
     get directorIsStakeholderYesOpt() {
@@ -12,6 +10,18 @@ class AddDirectorPage {
 
     get requestDirectorToCompleteFormYesOpt() {
         return cy.get('#emailDirector')
+    }
+
+    get directorNameInput() {
+        return cy.get('[name="director_name"]')
+    }
+
+    get directorEmailInput() {
+        return cy.get('[name="director_email"]')
+    }
+
+    get completeAddingDirectorBtn() {
+        return cy.contains('button', 'Complete adding Director')
     }
 
     get requestDirectorToCompleteFormNoOpt() {
@@ -98,6 +108,12 @@ class AddDirectorPage {
     selectRequestDirectorToCompleteForm(option) {
         option === 'Yes' ? this.requestDirectorToCompleteFormYesOpt.click()
                             : this.requestDirectorToCompleteFormYesOpt.click()
+    }
+
+    enterDirectorContactDetails(fullName, email) {
+        if (fullName.length > 0) this.directorNameInput.type(fullName)
+        if (email.length > 0) this.directorEmailInput.type(email)
+        this.completeAddingDirectorBtn.click()
     }
 
     enterDirectorPersonalDetails(fullName, alias, preferredName, firstName, lastName, dateOfBirth) {
